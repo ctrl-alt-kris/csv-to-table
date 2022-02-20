@@ -3,43 +3,39 @@ import "./Table.css"
 
 import Icon from "./SortIcon"
 
+/**
+ * Table renders a table and handles all sorting events. 
+ * @param {*} props 
+ * @returns 
+ */
 const Table = (props) => {
-
-    const [sortBy, setSortBy] = useState("sur_name")
-    const [order, setOrder] = useState("descending")
+    const [order, setOrder] = useState("DESC")
+    const [lastSorted, setLastSorted] = useState('sur_name')
     const [sortedArray, setSortedArray] = useState([])
-    
 
     const filterArray = (filterField) => {
-        if (filterField === undefined){
-            filterField = sortBy
-        }
-        if(order === "descending"){
+
+        //simple sorting, it flips the sort order on every call
+        if(order === "ASC" && lastSorted === filterField){
             setSortedArray(props.csvArray.sort((a, b) =>{return a[filterField] > b[filterField] ? 1 : -1}))
+            setOrder("DESC")
         }       
-        if(order === "ascending"){
-            setSortedArray(props.csvArray.sort((a, b) =>{return b[filterField] > a[filterField] ? 1 : -1}))
+        if(order === "DESC" && lastSorted === filterField){
+            setSortedArray(props.csvArray.sort((a, b) =>{return a[filterField] < b[filterField] ? 1 : -1}))
+            setOrder("ASC")
         }
+        //this last if statement makes sure the sorted field is always ordered in a descending way on the first filter
+        if(lastSorted !== filterField){
+            setSortedArray(props.csvArray.sort((a, b) =>{return a[filterField] > b[filterField] ? 1 : -1}))
+            setOrder("DESC")
+        }
+
+        setLastSorted(filterField)
     }
-    
 
-    const handleClick = (filterField) => {
-        if (sortBy === filterField && order === "ascending"){
-            setOrder("descending")
-        }
-        else if (sortBy === filterField && order === "descending"){
-            setOrder("ascending")
-        }
-        if (sortBy !== filterField){
-            setOrder("descending")
-        }
-
-        setSortBy(filterField)
-
-        filterArray(filterField)
-    }
+    // makes sure we call the sort on the first render
     useEffect(() => {
-        filterArray()
+        filterArray("sur_name")
     },[props.csvArray])
 
     return(
@@ -48,28 +44,28 @@ const Table = (props) => {
                 <table>
                     <thead>
                         <tr>
-                            <th onClick={() => handleClick("first_name")}>
+                            <th onClick={() => filterArray("first_name")}>
                                 <div className='aligner'>
                                     <div>First name</div> 
-                                    <Icon/>
+                                    <Icon field="first_name" sorted={lastSorted} order={order}/>
                                 </div>
                             </th>
-                            <th onClick={() => handleClick("sur_name")}>
+                            <th onClick={() => filterArray("sur_name")}>
                                 <div className='aligner'>
                                     <div>Sur name</div>
-                                    <Icon/>
+                                    <Icon field="sur_name"  sorted={lastSorted} order={order}/>
                                 </div>
                             </th>
-                            <th onClick={() => handleClick("issue_count")}>
+                            <th onClick={() => filterArray("issue_count")}>
                                 <div className='aligner'>
                                     <div>Issues</div> 
-                                    <Icon/>
+                                    <Icon field="issue_count" sorted={lastSorted} order={order}/>
                                 </div>
                             </th>
-                            <th onClick={() => handleClick("date_of_birth")}>
+                            <th onClick={() => filterArray("date_of_birth")}>
                                 <div className='aligner'>
                                     <div>Date of birth</div> 
-                                    <Icon/>
+                                    <Icon field="date_of_birth" sorted={lastSorted} order={order}/>
                                 </div>
                             </th>
                         </tr>

@@ -11,7 +11,9 @@ function App() {
     <div className='container'>
       
     {csvArray.length === 0 &&
+    
       <CsvReader setCsvArray={setCsvArray}/>
+    
     }
     {csvArray.length > 0 &&
         <Table csvArray={csvArray}/>

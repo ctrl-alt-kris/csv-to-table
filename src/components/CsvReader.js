@@ -8,6 +8,7 @@ import "./CsvReader.css"
  */
 const CsvReader = (props) => {
     const [csvFile, setCsvFile] = useState();
+    const [invalidFile, setInvalidFile] = useState(false);
 
 
     //putting the types of accaptable files in an array for type checking
@@ -76,7 +77,7 @@ const CsvReader = (props) => {
             <div className='header'>Select your file</div>
             <p className='help_text'> File should be a CSV file</p>
                 <input
-                className='upload_area'
+                    className='upload_area'
                     type='file'
                     accept='.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel'
                     id='csvFile'
@@ -85,12 +86,17 @@ const CsvReader = (props) => {
                             if(!acceptedFiles.includes(e.target.files[0].type)){
                                 //TODO Add error notification
                                 e.target.value = null 
+                                setInvalidFile(true)
                             }else{
                                 setCsvFile(e.target.files[0])
+                                setInvalidFile(false)
                             }
                         }
                     }}
-                />         
+                />
+                {invalidFile &&
+                <p className='error_text'>It seems that was not a csv file</p>         
+}
         </div>
     );
 

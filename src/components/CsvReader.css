@@ -4,20 +4,30 @@
     background-color: #fff;
     box-shadow: 0 5px 60px #bcf8e2;
     border: 2px solid #04AA6D;
+    border-radius: 12px;
     padding: 2rem 1.875rem 5rem 1.875rem;
     text-align: center;
     margin-bottom: 10rem;
+    margin-left: -1.875rem 
 }
 
 .header{
+
     font-size: 1.8rem;
     font-weight: 500;
     margin-bottom: 0.3125rem;
+    color: #04AA6D;
 }
 
 .help_text{
     font-size: 0.9rem;
     color: rgb(196, 195, 196);
+    margin-bottom: 1rem;
+}
+
+.error_text{
+    font-size: 0.9rem;
+    color: rgb(255, 102, 102);
     margin-bottom: 1rem;
 }
 
@@ -29,7 +39,7 @@
   }
 
 .upload_area::before{
-    content: "select your file";
+    content: "Drop your file here or click";
     color:rgb(196, 195, 196);
     height: 11.25rem; /* 180px */
     display: flex;
@@ -43,6 +53,6 @@
     transition: border-color 300ms ease-in-out;
 }
 
-.upload_area_hover {
+.upload_area:hover::before {
     border-color: #04AA6D;
   }
