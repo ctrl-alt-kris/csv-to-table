@@ -82,6 +82,13 @@ const Table = (props) => {
                             ))
                         }
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan = '100%'>
+                        <button onClick={() => props.setCsvArray([])}>Upload new data</button>
+                        </td>
+                        </tr>
+                    </tfoot>
                 </table>
              : null}
         </>

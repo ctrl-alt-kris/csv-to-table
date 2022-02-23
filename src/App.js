@@ -17,8 +17,8 @@ function App() {
     }
     {csvArray.length > 0 &&
     <div>
-        <Table csvArray={csvArray}/>
-        <button onClick={() => setCsvArray([])}>Upload new data</button>
+        <Table csvArray={csvArray} setCsvArray={setCsvArray}/>
+       
       </div>
     }
 

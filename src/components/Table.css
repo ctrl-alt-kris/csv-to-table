@@ -15,7 +15,8 @@ td{
   
 tr:nth-child(odd){background-color: #ffffff;}
 tr:nth-child(even){background-color: #f2f2f2;}
-tr:hover {background-color: #ddd;}
+tbody tr:hover {background-color: #ddd;}
+
 
 th {
     padding-top: 12px;
@@ -32,3 +33,22 @@ th {
     align-items: center;
     justify-content: space-between;
   }
+
+tfoot{
+  border: none;
+  background-color: #ddd;
+}
+
+
+button{
+  background-color: #04AA6D;
+  border: 1px solid black;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+  float: right;
+}

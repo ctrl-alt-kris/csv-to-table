@@ -10,16 +10,3 @@ body{
 .container{
     width: max-content;
 }
-
-button{
-    background-color: #04AA6D;
-    border: 1px solid black;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 16px;
-    float: right;
-}
