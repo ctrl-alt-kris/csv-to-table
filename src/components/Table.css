@@ -34,12 +34,6 @@ th {
     justify-content: space-between;
   }
 
-tfoot{
-  border: none;
-  background-color: #ddd;
-}
-
-
 button{
   background-color: #04AA6D;
   border: 1px solid black;
